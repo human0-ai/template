@@ -102,7 +102,7 @@ function fetchReviewThreads(owner, repoName, prNumber) {
 }
 
 function renderThread(t) {
-  const lines = [`- Thread ${t.id} on ${t.path}${t.isOutdated ? " (outdated)" : ""}``];
+  const lines = [`- Thread ${t.id} on ${t.path}${t.isOutdated ? " (outdated)" : ""}`];
   for (const c of t.comments?.nodes || []) {
     const loc = c.line ?? c.originalLine ?? "?";
     const body = (c.body || "").replace(/\s+/g, " ").slice(0, 400);
