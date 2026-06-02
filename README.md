@@ -42,7 +42,9 @@ Use this repo as a template (the green **Use this template** button), then:
    - `ANTHROPIC_API_KEY` — an [Anthropic API key](https://console.anthropic.com/), or
    - `CLAUDE_CODE_OAUTH_TOKEN` — a Claude.ai OAuth token (`claude setup-token`).
 2. **Edit `AGENTS.md`** to describe your project — its structure and rules.
-3. **Open a pull request.** The reviewer runs on the next push.
+3. **Review `docs/ai-review.md`** — this is your reviewer's instructions. Tailor
+   it to your project before you start relying on it.
+4. **Open a pull request.** The reviewer runs on the next push.
 
 To let an approval merge on its own, enable **auto-merge** and require the AI
 review in your branch protection settings.
