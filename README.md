@@ -31,7 +31,7 @@ every commit reviewed and merged by AI.
 
 If you just want the AI reviewer on your current project, you don't need to fork
 anything. Add a credential and one workflow file — full steps in the
-[code-review action README](https://github.com/human0-ai/code-review#quick-start).
+[code-review action README](https://github.com/human0-ai/code-review#set-it-up).
 
 ### 2. Start a new repo from this template
 
