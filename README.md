@@ -1,29 +1,39 @@
 <h1 align="center">human0</h1>
 
 <p align="center">
-  A repository template for working with AI agents — and an AI reviewer that
-  holds the quality bar on every pull request.
+  Describe a change. Claude Code ships it. You barely touch it.
 </p>
 
 <p align="center">
-  <a href="https://human0.ai">human0.ai</a> ·
+  <a href="https://human0.ai/open-source">human0.ai</a> ·
   <a href="https://github.com/human0-ai/code-review">the reviewer action</a>
 </p>
 
 ---
 
-This is the starting point for any repo you want AI agents to operate in. Fork
-it and you get, out of the box:
+Fork this template and your repo runs on a self-driving loop.
 
-- **`AGENTS.md` / `CLAUDE.md`** — the guidelines agents read on every run, so they
-  understand your structure, principles, and workflow without being told each time.
-- **An AI code reviewer** — runs on every PR via GitHub Actions, posts inline
-  comments, and gives a single verdict: **APPROVE** or **REQUEST_CHANGES**.
-- **A workflow built for autonomy** — draft a PR, watch a preview, say "go", and
-  let the reviewer's approval auto-merge it.
+You say what you want — in plain language, from your laptop or your phone. Claude
+Code does the rest. It researches the code. It makes the change. It writes the
+docs. It opens a pull request.
 
-It's the same setup that builds and runs [human0](https://human0.ai) itself —
-every commit reviewed and merged by AI.
+Then an AI reviewer checks the work. If something's off, the agent fixes it and
+tries again. It loops on its own until the review passes. Then it merges.
+
+You step in twice: to say what you want, and to say "go."
+
+What you get out of the box:
+
+- **`AGENTS.md` / `CLAUDE.md`** — your rules, read by every agent on every run.
+  Write them once.
+- **An AI reviewer** — checks every PR, comments inline, gives one verdict:
+  **APPROVE** or **REQUEST_CHANGES**.
+- **An autonomous workflow** — open a draft PR, watch the preview, say "go." The
+  agent clears the review and the PR merges itself.
+
+Built for Claude Code, including Claude Code on the web. The reviewer and rules
+work with Codex or any agent too. It's the same setup that runs
+[human0](https://human0.ai) itself — every commit reviewed and merged by AI.
 
 ## Two ways to use it
 
