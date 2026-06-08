@@ -1,82 +1,160 @@
-<h1 align="center">human0</h1>
+# human0 Repository Template
 
-<p align="center">
-  A repository template for working with AI agents — and an AI reviewer that
-  holds the quality bar on every pull request.
-</p>
+> **AI agents that own your codebase end-to-end.** This template wires a fully autonomous development loop into any GitHub repository — agents build, an AI reviewer approves, and approved PRs merge themselves.
 
-<p align="center">
-  <a href="https://human0.ai">human0.ai</a> ·
-  <a href="https://github.com/human0-ai/code-review">the reviewer action</a>
-</p>
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ---
 
-This is the starting point for any repo you want AI agents to operate in. Fork
-it and you get, out of the box:
+## What is this?
 
-- **`AGENTS.md` / `CLAUDE.md`** — the guidelines agents read on every run, so they
-  understand your structure, principles, and workflow without being told each time.
-- **An AI code reviewer** — runs on every PR via GitHub Actions, posts inline
-  comments, and gives a single verdict: **APPROVE** or **REQUEST_CHANGES**.
-- **A workflow built for autonomy** — draft a PR, watch a preview, say "go", and
-  let the reviewer's approval auto-merge it.
+This is a starter template for **AI-agent-driven development**. Fork it, add your API key, and your repository gains:
 
-It's the same setup that builds and runs [human0](https://human0.ai) itself —
-every commit reviewed and merged by AI.
+- **Automated AI code review** — every pull request gets reviewed by Claude, which posts inline comments and renders a verdict (`APPROVE` or `REQUEST_CHANGES`)
+- **Auto-merge on approval** — when the AI reviewer approves and CI is green, the PR merges itself, no human click needed
+- **Agent guidelines** — an `AGENTS.md` file that tells every AI agent working in this repo exactly how to operate: your structure, principles, and workflow
 
-## Two ways to use it
+It's the same setup [human0.ai](https://human0.ai) uses internally to run autonomous companies with AI agents.
 
-### 1. Drop the reviewer into an existing repo
+---
 
-If you just want the AI reviewer on your current project, you don't need to fork
-anything. Add a credential and one workflow file — full steps in the
-[code-review action README](https://github.com/human0-ai/code-review#set-it-up).
+## 5-Minute Quickstart
 
-### 2. Start a new repo from this template
+**Fork, configure, and run your first AI-reviewed PR in under 5 minutes.**
 
-Use this repo as a template (the green **Use this template** button), then:
+### 1. Fork this repo
 
-1. **Add a credential.** In **Settings → Secrets and variables → Actions**, add
-   one of:
-   - `ANTHROPIC_API_KEY` — an [Anthropic API key](https://console.anthropic.com/), or
-   - `CLAUDE_CODE_OAUTH_TOKEN` — a Claude.ai OAuth token (`claude setup-token`).
-2. **Edit `AGENTS.md`** to describe your project — its structure and rules.
-3. **Review `docs/ai-review.md`** — this is your reviewer's instructions. Tailor
-   it to your project before you start relying on it.
-4. **Open a pull request.** The reviewer runs on the next push.
+Click **Use this template** (or fork) to create your own copy.
 
-To let an approval merge on its own, enable **auto-merge** and require the AI
-review in your branch protection settings.
+### 2. Add your API credential
 
-## Repository settings
+Go to **Settings → Secrets and variables → Actions → New repository secret** and add one of:
 
-For the reviewer to **approve** PRs (which is what lets an approval auto-merge),
-GitHub must allow Actions to approve pull requests:
+| Secret name | Value |
+|---|---|
+| `ANTHROPIC_API_KEY` | Your [Anthropic API key](https://console.anthropic.com/) |
+| `CLAUDE_CODE_OAUTH_TOKEN` | Your Claude.ai OAuth token (alternative) |
 
-**Settings → Actions → General → Workflow permissions** → enable
-**"Allow GitHub Actions to create and approve pull requests."**
+### 3. Enable workflow permissions
 
-In an organization this is often locked at the org level — set it under
-**Organization → Settings → Actions → General** instead. You don't need the
-"Read and write" default token permission; the workflow already requests the
-write scopes it needs.
+Go to **Settings → Actions → General → Workflow permissions** and select:
+- ✅ **Read and write permissions**
+- ✅ **Allow GitHub Actions to create and approve pull requests**
 
-## What's in here
+### 4. Customize your agent guidelines
 
-| Path | What it's for |
-| --- | --- |
-| `AGENTS.md` | Guidelines agents read every run. `CLAUDE.md` is a symlink to it. |
-| `docs/ai-review.md` | The reviewer's prompt — edit it to change how the reviewer behaves. |
-| `.github/workflows/ai-review.yml` | Runs the reviewer on every PR. |
+Edit `AGENTS.md` to reflect your project:
+- Replace the `## Structure` section with your actual directory layout
+- Add any project-specific conventions your agents should follow
+- The `## Workflow` and `## AI Reviewer` sections are ready to use as-is
 
-## Customizing the reviewer
+### 5. Open a pull request
 
-The reviewer is just a prompt plus your `AGENTS.md`. To change the bar, tone, or
-project-specific rules, edit `docs/ai-review.md`. To teach it your conventions
-without touching the prompt, write them in `AGENTS.md` — it reads that on every
-run.
+Create any PR — the AI reviewer runs automatically. On approval, enable auto-merge and the PR lands itself.
+
+---
+
+## How it Works
+
+```
+Developer or AI agent opens a PR
+         │
+         ▼
+GitHub Actions triggers ai-review.yml
+         │
+         ▼
+human0-ai/code-review action runs
+  ├── Three parallel sub-reviewers analyze the diff
+  │     ├── Simpler-solution: is there a simpler approach?
+  │     ├── Goal-alignment: does this serve the stated purpose?
+  │     └── Architect: is the structure sound?
+  ├── Findings consolidated into a single review
+  └── Verdict: APPROVE or REQUEST_CHANGES
+         │
+    APPROVE + CI green
+         │
+         ▼
+    Auto-merge fires → PR lands
+```
+
+**Agent loop:** AI agents in this repo follow the workflow in `AGENTS.md` — they open draft PRs early, address reviewer threads autonomously, and drive each PR to merge without requiring human intervention for routine changes.
+
+---
+
+## What's Included
+
+| File | Purpose |
+|---|---|
+| `AGENTS.md` | Agent guidelines — every AI agent reads this on every run |
+| `CLAUDE.md` | Symlink to `AGENTS.md` (for tools that look for either name) |
+| `docs/ai-review.md` | Reviewer instructions — customize to set your review bar |
+| `.github/workflows/ai-review.yml` | The automation trigger |
+
+---
+
+## Integrating into an Existing Repo
+
+You don't have to fork this template. To add AI code review to an existing project:
+
+1. Copy `.github/workflows/ai-review.yml` into your repo
+2. Copy `docs/ai-review.md` (or write your own review standards)
+3. Add the `ANTHROPIC_API_KEY` or `CLAUDE_CODE_OAUTH_TOKEN` secret
+4. Enable workflow write permissions (step 3 above)
+5. Optionally add `AGENTS.md` with your project guidelines
+
+---
+
+## Customizing Review Behavior
+
+Edit `docs/ai-review.md` to change how the AI reviewer evaluates PRs. The default standard is:
+- Correctness over cleverness
+- Simplicity over abstractions
+- Security and edge case coverage
+- Stale plan file cleanup
+
+Add domain-specific rules — "never use `any` in TypeScript," "all DB queries must go through the repository layer," etc.
+
+---
+
+## Requirements
+
+- A GitHub repository (public or private)
+- An Anthropic API key **or** a Claude.ai OAuth token
+- GitHub Actions enabled (free for public repos; free tier minutes for private)
+
+**Estimated cost:** A typical code review consumes ~10,000–50,000 tokens. At Anthropic API prices, this is roughly $0.01–$0.15 per review depending on PR size and the model tier used.
+
+---
+
+## FAQ
+
+**Does this work with private repositories?**  
+Yes. The action runs inside GitHub Actions and never sends your code to an external server beyond Anthropic's API. Anthropic's [data usage policy](https://www.anthropic.com/legal/aup) applies.
+
+**Can I use a different AI model?**  
+The action uses Claude (via Anthropic). Model selection is handled inside the `human0-ai/code-review` action — see that repo for configuration options.
+
+**What if the AI reviewer is wrong?**  
+Push back in the PR thread. The reviewer isn't infallible — if you disagree, reply with reasoning. The reviewer is designed to consider counter-arguments. If you can't reach consensus, defer the point to a `/.plans/` follow-up and link it in the thread, then the reviewer will approve.
+
+**How do I disable AI review for a specific PR?**  
+Add the `no-ai-review` label to the PR. The workflow skips labeled PRs.
+
+**Does auto-merge merge immediately?**  
+Auto-merge fires when: (1) the AI reviewer approves, and (2) all required status checks pass. If you have branch protection rules requiring human approval, those still apply.
+
+**Can multiple AI agents work in the same repo simultaneously?**  
+Yes. The `concurrency` group in the workflow ensures only one review runs per PR at a time, preventing conflicts.
+
+---
+
+## Related
+
+- **[human0-ai/code-review](https://github.com/human0-ai/code-review)** — The AI reviewer action powering this template
+- **[human0.ai](https://human0.ai)** — The platform for running fully autonomous AI companies
+
+---
 
 ## License
 
-Apache 2.0 — see [LICENSE](./LICENSE).
+Apache 2.0 — see [LICENSE](LICENSE).
