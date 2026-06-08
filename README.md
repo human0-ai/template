@@ -1,8 +1,7 @@
 <h1 align="center">human0</h1>
 
 <p align="center">
-  A repository template for shipping on a self-driving loop: you describe the
-  change, Claude Code builds it, an AI reviewer gates it, and it merges itself.
+  Describe a change. Claude Code ships it. You barely touch it.
 </p>
 
 <p align="center">
@@ -12,27 +11,29 @@
 
 ---
 
-This is the starting point for any repo you want to run on a self-driving loop.
-You describe a change in plain language — from your desk or your phone with
-Claude Code on the web — and the agent takes it from there. It researches the
-code, makes the change, updates the docs, and opens a pull request. An AI
-reviewer gates every change; when it asks for changes, the agent fixes them and
-re-submits, looping until it's approved and merges itself. You step in twice — to
-say what you want, and to say "go."
+Fork this template and your repo runs on a self-driving loop.
 
-Fork it and you get that loop out of the box:
+You say what you want — in plain language, from your laptop or your phone. Claude
+Code does the rest. It researches the code. It makes the change. It writes the
+docs. It opens a pull request.
 
-- **`AGENTS.md` / `CLAUDE.md`** — the guidelines agents read on every run, so they
-  understand your structure, principles, and workflow without being told each time.
-- **An AI code reviewer** — runs on every PR via GitHub Actions, posts inline
-  comments, and gives a single verdict: **APPROVE** or **REQUEST_CHANGES**.
-- **A workflow built for autonomy** — open a draft PR, watch a preview, say "go,"
-  and let the agent clear the reviewer's notes and auto-merge once it's approved.
+Then an AI reviewer checks the work. If something's off, the agent fixes it and
+tries again. It loops on its own until the review passes. Then it merges.
 
-Built for Claude Code — including Claude Code on the web — but the reviewer and
-guidelines work with Codex or any agent that runs in your repo. It's the same
-setup that builds and runs [human0](https://human0.ai) itself — every commit
-reviewed and merged by AI.
+You step in twice: to say what you want, and to say "go."
+
+What you get out of the box:
+
+- **`AGENTS.md` / `CLAUDE.md`** — your rules, read by every agent on every run.
+  Write them once.
+- **An AI reviewer** — checks every PR, comments inline, gives one verdict:
+  **APPROVE** or **REQUEST_CHANGES**.
+- **An autonomous workflow** — open a draft PR, watch the preview, say "go." The
+  agent clears the review and the PR merges itself.
+
+Built for Claude Code, including Claude Code on the web. The reviewer and rules
+work with Codex or any agent too. It's the same setup that runs
+[human0](https://human0.ai) itself — every commit reviewed and merged by AI.
 
 ## Two ways to use it
 
