@@ -35,6 +35,16 @@ Built for Claude Code, including Claude Code on the web. The reviewer and rules
 work with Codex or any agent too. It's the same setup that runs
 [human0](https://human0.ai) itself — every commit reviewed and merged by AI.
 
+## Before you start: one prerequisite
+
+The template is free (Apache 2.0) and runs entirely in your own GitHub Actions,
+but the reviewer runs on **your own Anthropic key** — bring an
+[Anthropic API key](https://console.anthropic.com/) or a Claude.ai OAuth token
+(`claude setup-token`). It's bring-your-own on purpose: **no per-seat fee, and
+your code never leaves your repo.** Anthropic bills you directly for usage —
+each review typically costs about **$0.01–0.15**. You add this key as a GitHub
+secret in step 1 below.
+
 ## Two ways to use it
 
 ### 1. Drop the reviewer into an existing repo
