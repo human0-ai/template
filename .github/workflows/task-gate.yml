@@ -1,0 +1,32 @@
+name: Task Gate
+
+on:
+  pull_request:
+    # `edited` so adding the Task: link to the description re-runs the gate.
+    types: [opened, synchronize, ready_for_review, edited, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  gate:
+    if: ${{ !github.event.pull_request.draft }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: task-gate-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    steps:
+      - uses: human0-ai/task-gate@v1
+        with:
+          pr_number: ${{ github.event.pull_request.number }}
+          repo: ${{ github.repository }}
+          github_token: ${{ github.token }}
+          # The dashboard that serves the gate endpoint, and the Human0 app
+          # whose PRs are gated. Point these at your deployment.
+          endpoint_base: https://dashboard.human0.ai
+          app_login: human0-ai[bot]
+          # Shared secret the dashboard expects — add it under
+          # Settings → Secrets and variables → Actions.
+          gate_token: ${{ secrets.TASK_GATE_TOKEN }}
