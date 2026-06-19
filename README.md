@@ -89,10 +89,9 @@ stays red until an agent's PR links a Human0 task that's been **independently**
 approved, so self-approved work can't merge. It only gates the Human0 app's
 PRs — human PRs pass through.
 
-To turn it on, add a `TASK_GATE_TOKEN` secret (the shared secret your dashboard
-expects), point `endpoint_base` / `app_login` in `task-gate.yml` at your
-deployment, and mark `task-gate` a required status check. If you're not running
-the Human0 platform, delete `task-gate.yml` — the reviewer stands on its own.
+There's nothing to configure — no secret, no env. Just mark `task-gate` a
+required status check so a red gate blocks the merge. If you're not running the
+Human0 platform, delete `task-gate.yml` — the reviewer stands on its own.
 
 ## Customizing the reviewer
 

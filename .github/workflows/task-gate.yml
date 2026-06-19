@@ -23,10 +23,3 @@ jobs:
           pr_number: ${{ github.event.pull_request.number }}
           repo: ${{ github.repository }}
           github_token: ${{ github.token }}
-          # The dashboard that serves the gate endpoint, and the Human0 app
-          # whose PRs are gated. Point these at your deployment.
-          endpoint_base: https://dashboard.human0.ai
-          app_login: human0-ai[bot]
-          # Shared secret the dashboard expects — add it under
-          # Settings → Secrets and variables → Actions.
-          gate_token: ${{ secrets.TASK_GATE_TOKEN }}
