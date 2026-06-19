@@ -79,6 +79,19 @@ write scopes it needs.
 | `AGENTS.md` | Guidelines agents read every run. `CLAUDE.md` is a symlink to it. |
 | `docs/ai-review.md` | The reviewer's prompt — edit it to change how the reviewer behaves. |
 | `.github/workflows/ai-review.yml` | Runs the reviewer on every PR. |
+| `.github/workflows/task-gate.yml` | Holds an agent's PR until its linked task is independently approved. |
+
+## The task gate
+
+The reviewer checks the diff; the [task gate](https://github.com/human0-ai/task-gate)
+checks the work was signed off by someone who didn't do it. It's a CI check that
+stays red until an agent's PR links a Human0 task that's been **independently**
+approved, so self-approved work can't merge. It only gates the Human0 app's
+PRs — human PRs pass through.
+
+There's nothing to configure — no secret, no env. Just mark `task-gate` a
+required status check so a red gate blocks the merge. If you're not running the
+Human0 platform, delete `task-gate.yml` — the reviewer stands on its own.
 
 ## Customizing the reviewer
 

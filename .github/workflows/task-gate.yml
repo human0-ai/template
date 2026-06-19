@@ -1,0 +1,27 @@
+name: Task Gate
+
+on:
+  pull_request:
+    # `edited` so adding the Task: link to the description re-runs the gate.
+    types: [opened, synchronize, ready_for_review, edited, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  # Job id is the status-check name — keep it `task-gate` so the check you mark
+  # required in branch protection matches.
+  task-gate:
+    if: ${{ !github.event.pull_request.draft }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: task-gate-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    steps:
+      - uses: human0-ai/task-gate@v1
+        with:
+          pr_number: ${{ github.event.pull_request.number }}
+          repo: ${{ github.repository }}
+          github_token: ${{ github.token }}
